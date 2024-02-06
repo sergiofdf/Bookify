@@ -21,5 +21,4 @@ public record Currency
             throw new ApplicationException("The currency code is invalid");
     }
 
-
 }

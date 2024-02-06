@@ -5,7 +5,7 @@ namespace Bookify.Domain.Bookings;
 
 public class PricingService
 {
-    public PricingDetails CaculatePrice(Apartment apartment, DateRange period)
+    public PricingDetails CalculatePrice(Apartment apartment, DateRange period)
     {
         var currency = apartment.Price.Currency;
 
@@ -28,10 +28,12 @@ public class PricingService
         var amenitiesUpCharge = Money.Zero(currency);
         if (percentageUpCharge > 0)
         {
-            amenitiesUpCharge = new Money(priceForPeriod.Amount * percentageUpCharge, currency);
+            amenitiesUpCharge = new Money(
+                priceForPeriod.Amount * percentageUpCharge,
+                currency);
         }
 
-        var totalPrice = Money.Zero();
+        var totalPrice = Money.Zero(currency);
 
         totalPrice += priceForPeriod;
 
